@@ -1,0 +1,4 @@
+{
+  "buildCommand": "for d in *_files; do cp -r \"$d\" \"ITC website/\"; done",
+  "outputDirectory": "ITC website"
+}
