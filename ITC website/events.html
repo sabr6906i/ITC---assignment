@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — ITC, IIT Bombay</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Filter Tabs: Varied Styles */
+    .filter-tabs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    
+    .filter-tab {
+      padding: 10px 20px;
+      border-radius: 0;
+      font-family: 'Newsreader', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: transparent;
+      border: 1px solid var(--outline-variant);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: var(--bg-card);
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+    }
+
+    /* Event Cards: 3 Distinct Styles */
+    .events-main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    
+    .event-full-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Style 1: Sharp Border + Simple */
+    .event-full-card:nth-child(1) {
+      border: 2px solid var(--outline-variant);
+    }
+    .event-full-card:nth-child(1):hover {
+      border-color: var(--text-primary);
+      transform: translate(-2px, -2px);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Style 2: Shadow Lift */
+    .event-full-card:nth-child(2) {
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .event-full-card:nth-child(2):hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Style 3: Accent Bar */
+    .event-full-card:nth-child(3) {
+      border-top: 4px solid var(--accent-secondary);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+    .event-full-card:nth-child(3):hover {
+      border-top-width: 8px;
+    }
+    
+    .event-banner {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      background: rgba(71, 71, 71, 0.1);
+    }
+    
+    .event-banner .event-status {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+    
+    .status-upcoming {
+      background: transparent;
+      color: var(--accent-secondary);
+      border: 1px solid var(--accent-secondary);
+      padding: 4px 12px;
+      border-radius: 0;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    .status-past {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    
+    .status-annual {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--text-secondary);
+    }
+    
+    .event-info {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .event-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .event-meta span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .event-info h3 {
+      font-family: 'Newsreader', serif;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .event-info p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+    }
+    
+    .event-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Featured Event */
+    .event-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+    }
+    
+    .event-featured .event-banner {
+      height: auto;
+      min-height: 200px;
+      font-size: 5rem;
+    }
+    
+    .event-featured .event-info {
+      padding: 32px;
+    }
+    
+    .event-featured h3 {
+      font-size: 1.6rem;
+    }
+
+    /* Section Divider */
+    .section-divider-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 60px 0 32px;
+    }
+    
+    .section-divider-label h3 {
+      font-family: 'Newsreader', serif;
+      font-size: 1rem;
+      white-space: nowrap;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    .section-divider-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .events-main { grid-template-columns: 1fr; }
+      .event-featured { grid-template-columns: 1fr; }
+      .event-featured .event-banner { min-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">ITC</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="events.html">Events</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label animate">Events</span>
+      <h1 class="animate">What's <span class="grad-text">Happening</span></h1>
+      <p class="section-subtitle animate" style="margin: 16px auto 0;">From Asia's biggest tech festival to intimate lab sessions — ITC keeps the calendar packed with opportunity.</p>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- EVENTS LIST -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterEvents('all', this)">All Events</button>
+        <button class="filter-tab" onclick="filterEvents('upcoming', this)">Upcoming</button>
+        <button class="filter-tab" onclick="filterEvents('past', this)">Past Events</button>
+        <button class="filter-tab" onclick="filterEvents('annual', this)">Annual</button>
+      </div>
+
+      <!-- Events grid -->
+      <div class="events-main" id="eventsGrid">
+
+        <!-- Featured: Techfest -->
+        <div class="event-full-card event-featured animate" data-type="annual">
+          <div class="event-banner">
+            <img src="../IITB Tech Council Home_files/ITClogoWhite.png" alt="Techfest" class="club-logo" />
+            <span class="badge status-annual event-status">Annual</span>
+          </div>
+          <div class="event-info">
+            <div class="event-meta">
+              <span>📅 December · Every Year</span>
+              <span>📍 IIT Bombay Campus</span>
+              <span>👥 180,000+ Participants</span>
+            </div>
+            <h3>Techfest — Asia's Largest S&T Festival</h3>
+            <p>Techfest is Asia's largest science and technology festival, hosted annually at IIT Bombay. Co-organized with ITC, it brings together the brightest minds across the globe for competitions, exhibitions, lectures, and cultural exchanges spanning robotics, AI, aerospace, and more.</p>
+            <div class="event-tags">
+              <span class="badge">Robotics</span>
+              <span class="badge">AI</span>
+              <span class="badge">Competitions</span>
+              <span class="badge">Lectures</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Club Recruitments -->
+        <div class="event-full-card animate" data-type="annual">
+          <div class="event-banner">
+            <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="Club Recruitment" class="club-logo" />
+            <span class="badge status-annual event-status">Annual</span>
+          </div>
+          <div class="event-info">
+            <div class="event-meta">
+              <span>📅 Every Semester</span>
+              <span>📍 All Clubs</span>
+            </div>
+            <h3>Club Recruitment Drives</h3>
+            <p>Every semester, ITC clubs open their doors to fresh talent. There's no formal application — just show up to sessions, participate, and let your enthusiasm speak. Announcements go out via webmail.</p>
+            <div class="event-tags">
+              <span class="badge">Open to All</span>
+              <span class="badge">All Clubs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tinkerer's Lab Open Days -->
+        <div class="event-full-card animate" data-type="upcoming">
+          <div class="event-banner">
+            <img src="../IITB Tech Council Home_files/tl.jpg" alt="Tinkerer\'s Lab" class="club-logo" />
+            <span class="badge status-upcoming event-status">Upcoming</span>
+          </div>
+          <div class="event-info">
+            <div class="event-meta">
+              <span>📅 Year-round</span>
+              <span>📍 Tinkerer's Lab, IIT Bombay</span>
+            </div>
+            <h3>Tinkerer's Lab Open Sessions</h3>
+            <p>The Tinkerer's Lab hosts open sessions where students can prototype their ideas using cutting-edge fabrication equipment — 3D printers, laser cutters, electronics benches — with peer and mentor support available throughout.</p>
+            <div class="event-tags">
+              <span class="badge">Prototyping</span>
+              <span class="badge">Hands-on</span>
+              <span class="badge">Free Access</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Convener Applications -->
+        <div class="event-full-card animate" data-type="upcoming">
+          <div class="event-banner">
+            <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="Convener Applications" class="club-logo" />
+            <span class="badge status-upcoming event-status">Upcoming</span>
+          </div>
+          <div class="event-info">
+            <div class="event-meta">
+              <span>📅 April 2026</span>
+              <span>📍 ITC, IIT Bombay</span>
+            </div>
+            <h3>Web Convener Applications 2026</h3>
+            <p>ITC is recruiting Web Conveners for the upcoming academic year. Applicants build a multi-page ITC website or design project to showcase their skills. Selected conveners join the Web Team managing ITC's digital presence.</p>
+            <div class="event-tags">
+              <span class="badge">Applications Open</span>
+              <span class="badge">Web Team</span>
+              <span class="badge">Deadline: 2 Apr</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WnCC Learner's Space -->
+        <div class="event-full-card animate" data-type="past">
+          <div class="event-banner">
+            <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="WnCC Learner\'s Space" class="club-logo" />
+            <span class="badge status-past event-status">Past</span>
+          </div>
+          <div class="event-info">
+            <div class="event-meta">
+              <span>📅 Summer 2023</span>
+              <span>📍 Online + Campus</span>
+            </div>
+            <h3>WnCC Learner's Space</h3>
+            <p>The Web & Coding Club's annual summer learning initiative, offering structured courses across web development, machine learning, competitive programming, and app development — completely free for IITB students.</p>
+            <div class="event-tags">
+              <span class="badge">Web Dev</span>
+              <span class="badge">ML</span>
+              <span class="badge">Free Course</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERC Competitions -->
+        <div class="event-full-card animate" data-type="past">
+          <div class="event-banner">
+            <img src="../IITB Tech Council Home_files/erc.jpeg" alt="ERC Competitions" class="club-logo" />
+            <span class="badge status-past event-status">Past</span>
+          </div>
+          <div class="event-info">
+            <div class="event-meta">
+              <span>📅 Autumn 2023</span>
+              <span>📍 ERC Lab, IIT Bombay</span>
+            </div>
+            <h3>ERC Electronics Competitions</h3>
+            <p>The Electronics & Robotics Club held its semester competitions including line-following robots, automated drone tasks, and PCB design challenges. Open to all IITB students, no prior experience needed.</p>
+            <div class="event-tags">
+              <span class="badge">Robotics</span>
+              <span class="badge">Electronics</span>
+              <span class="badge">Competition</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /events-main -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">ITC</div>
+          <p>Institute Technical Council, IIT Bombay. Fostering innovation, tinkering, and creativity since the inception of the Gymkhana.</p>
+          <div class="social-links" style="margin-top:20px;">
+            <a href="https://www.facebook.com/tech.iitb" target="_blank">f</a>
+            <a href="https://www.instagram.com/tech.iitb" target="_blank">ig</a>
+            <a href="https://twitter.com/tech_iitb" target="_blank">tw</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="team.html">Meet the Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="https://itc.gymkhana.iitb.ac.in/clubs" target="_blank">All Clubs</a></li>
+            <li><a href="https://sites.google.com/view/tinkererslaboratory/home" target="_blank">Tinkerer's Lab</a></li>
+            <li><a href="mailto:gsectech@iitb.ac.in">Email ITC</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Institute Technical Council, IIT Bombay</span>
+        <span>Student Activity Centre, Mumbai 400076</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Filter events by type
+    function filterEvents(type, btn) {
+      // Update active tab
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#eventsGrid .event-full-card');
+      cards.forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = '';
+          // Reset grid span for featured if shown
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

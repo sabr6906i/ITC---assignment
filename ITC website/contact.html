@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — ITC, IIT Bombay</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Contact Layout */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Info Panel */
+    .contact-info {
+      position: sticky;
+      top: calc(var(--nav-h) + 32px);
+    }
+    
+    .contact-info h2 {
+      margin-bottom: 16px;
+      font-family: 'Newsreader', serif;
+      font-weight: 700;
+    }
+    
+    .contact-info > p {
+      margin-bottom: 36px;
+      color: var(--text-secondary);
+    }
+
+    /* Contact Items: 3 Distinct Styles */
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: 0;
+      margin-bottom: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    
+    /* Style 1: Sharp Border */
+    .contact-item:nth-child(1) {
+      border: 2px solid var(--outline-variant);
+    }
+    .contact-item:nth-child(1):hover {
+      border-color: var(--text-primary);
+      background: rgba(71, 71, 71, 0.1);
+    }
+    
+    /* Style 2: Icon Background */
+    .contact-item:nth-child(2) {
+      border: 1px solid var(--border);
+    }
+    .contact-item:nth-child(2):hover {
+      border-color: var(--outline-variant);
+    }
+    
+    /* Style 3: Left Bar */
+    .contact-item:nth-child(3) {
+      border-left: 4px solid var(--accent-secondary);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding-left: 16px;
+    }
+    .contact-item:nth-child(3):hover {
+      border-left-width: 8px;
+      padding-left: 12px;
+    }
+    
+    .ci-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 0;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      background: rgba(71, 71, 71, 0.2);
+      border: 1px solid var(--outline-variant);
+      color: var(--text-secondary);
+    }
+    
+    .ci-body strong {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-family: 'Newsreader', serif;
+      font-weight: 700;
+    }
+    
+    .ci-body a, .ci-body span {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+    
+    .ci-body a:hover {
+      color: var(--text-secondary);
+    }
+
+    /* Social Links */
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    
+    .social-btn {
+      flex: 1;
+      padding: 12px 8px;
+      border-radius: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    .social-btn:hover {
+      border-color: var(--outline-variant);
+      color: var(--text-primary);
+      background: rgba(71, 71, 71, 0.1);
+    }
+    
+    .social-btn-icon {
+      font-size: 1.3rem;
+    }
+
+    /* Form Card */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 40px;
+    }
+    
+    .form-card h3 {
+      font-family: 'Newsreader', serif;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    
+    .form-card > p {
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+      color: var(--text-secondary);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Subject Selector */
+    .subject-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .subject-chip {
+      padding: 8px 16px;
+      border-radius: 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid var(--outline-variant);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    .subject-chip:hover {
+      border-color: var(--text-primary);
+      background: rgba(71, 71, 71, 0.1);
+    }
+    
+    .subject-chip.active {
+      background: var(--bg);
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: 0;
+      background: #ffffff;
+      color: #0f0f0f;
+      font-family: 'Newsreader', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      border: 2px solid #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    .btn-submit:hover {
+      background: transparent;
+      color: #ffffff;
+    }
+    
+    .btn-submit:active {
+      transform: none;
+    }
+
+    /* Success Message */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .success-msg .success-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    
+    .success-msg h3 {
+      margin-bottom: 8px;
+      font-family: 'Newsreader', serif;
+      font-weight: 700;
+    }
+    
+    .success-msg p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Map Section */
+    .map-section {
+      padding: 0 0 100px;
+    }
+    
+    .map-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+    }
+    
+    .map-placeholder {
+      height: 280px;
+      background: rgba(71, 71, 71, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    .map-placeholder-icon {
+      font-size: 3rem;
+    }
+    
+    .map-info {
+      padding: 32px;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .map-info h3 {
+      font-family: 'Newsreader', serif;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    
+    .map-info p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    .map-info a { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--accent-blue); font-size: 0.9rem; font-weight: 500; }
+    .map-info a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-info { position: static; }
+      .map-card { grid-template-columns: 1fr; }
+      .map-info { border-left: none; border-top: 1px solid var(--border); }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">ITC</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="events.html">Events</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label animate">Contact</span>
+      <h1 class="animate">Feel free to<br><span class="grad-text">reach out</span></h1>
+      <p class="section-subtitle animate" style="margin: 16px auto 0;">Whether you have a question, an idea, or just want to connect — we're always happy to hear from you.</p>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- CONTACT MAIN -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: info -->
+        <div class="contact-info">
+          <span class="section-label animate">Get in Touch</span>
+          <h2 class="animate">Where to find us</h2>
+          <p class="animate">Reach out via any of the channels below or drop us a message using the form.</p>
+
+          <div class="contact-item animate">
+            <div class="ci-icon">📧</div>
+            <div class="ci-body">
+              <strong>Email</strong>
+              <a href="mailto:gsectech@iitb.ac.in">gsectech@iitb.ac.in</a>
+            </div>
+          </div>
+          <div class="contact-item animate">
+            <div class="ci-icon">📞</div>
+            <div class="ci-body">
+              <strong>Phone</strong>
+              <a href="tel:8128679781">+91 81286 79781</a>
+            </div>
+          </div>
+          <div class="contact-item animate">
+            <div class="ci-icon">📍</div>
+            <div class="ci-body">
+              <strong>Address</strong>
+              <span>Student Activity Centre,<br>IIT Bombay, Mumbai — 400076</span>
+            </div>
+          </div>
+
+          <div class="social-row animate">
+            <a class="social-btn" href="https://www.facebook.com/tech.iitb" target="_blank">
+              <span class="social-btn-icon">📘</span>
+              <span>Facebook</span>
+            </a>
+            <a class="social-btn" href="https://www.instagram.com/tech.iitb" target="_blank">
+              <span class="social-btn-icon">📸</span>
+              <span>Instagram</span>
+            </a>
+            <a class="social-btn" href="https://twitter.com/tech_iitb" target="_blank">
+              <span class="social-btn-icon">🐦</span>
+              <span>Twitter</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="form-card animate">
+          <div id="formWrapper">
+            <h3>Send us a message</h3>
+            <p>Fill in the form below and we'll get back to you as soon as possible.</p>
+
+            <!-- Subject chips -->
+            <div style="margin-bottom:8px;">
+              <label>What's this about?</label>
+            </div>
+            <div class="subject-chips" id="subjectChips">
+              <button class="subject-chip active" onclick="selectChip(this)">General Enquiry</button>
+              <button class="subject-chip" onclick="selectChip(this)">Club / Events</button>
+              <button class="subject-chip" onclick="selectChip(this)">Tinkerer's Lab</button>
+              <button class="subject-chip" onclick="selectChip(this)">Collaboration</button>
+              <button class="subject-chip" onclick="selectChip(this)">Other</button>
+            </div>
+
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">First Name *</label>
+                  <input type="text" id="fname" name="fname" placeholder="Aarav" required />
+                </div>
+                <div class="form-group">
+                  <label for="lname">Last Name *</label>
+                  <input type="text" id="lname" name="lname" placeholder="Sharma" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="aarav@iitb.ac.in" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" placeholder="Tell us what's on your mind..." rows="5" required></textarea>
+              </div>
+              <p id="formError" style="color:#f87171;font-size:0.85rem;margin-bottom:14px;display:none;"></p>
+              <button type="submit" class="btn-submit">Send Message →</button>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div class="success-msg" id="successMsg">
+            <div class="success-icon">✅</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. The ITC team will get back to you at the email you provided.</p>
+            <button class="btn btn-outline" style="margin-top:20px;" onclick="resetForm()">Send Another</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-card animate">
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon">🗺️</div>
+          <span>IIT Bombay Campus, Powai, Mumbai</span>
+        </div>
+        <div class="map-info">
+          <h3>Student Activity Centre</h3>
+          <p>IIT Bombay<br>Powai, Mumbai<br>Maharashtra — 400076<br>India</p>
+          <a href="https://maps.google.com/?q=IIT+Bombay+Student+Activity+Centre" target="_blank">Open in Google Maps ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">ITC</div>
+          <p>Institute Technical Council, IIT Bombay. Fostering innovation, tinkering, and creativity since the inception of the Gymkhana.</p>
+          <div class="social-links" style="margin-top:20px;">
+            <a href="https://www.facebook.com/tech.iitb" target="_blank">f</a>
+            <a href="https://www.instagram.com/tech.iitb" target="_blank">ig</a>
+            <a href="https://twitter.com/tech_iitb" target="_blank">tw</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="team.html">Meet the Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="https://itc.gymkhana.iitb.ac.in/clubs" target="_blank">All Clubs</a></li>
+            <li><a href="https://sites.google.com/view/tinkererslaboratory/home" target="_blank">Tinkerer's Lab</a></li>
+            <li><a href="mailto:gsectech@iitb.ac.in">Email ITC</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Institute Technical Council, IIT Bombay</span>
+        <span>Student Activity Centre, Mumbai 400076</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Subject chip toggle
+    function selectChip(el) {
+      document.querySelectorAll('.subject-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const errEl = document.getElementById('formError');
+
+      // Basic validation
+      if (!fname || !email || !message) {
+        errEl.textContent = 'Please fill in all required fields.';
+        errEl.style.display = 'block';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errEl.textContent = 'Please enter a valid email address.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      errEl.style.display = 'none';
+
+      // Simulate send (no real backend in Task 1)
+      const btn = document.querySelector('.btn-submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        document.getElementById('formWrapper').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      }, 1000);
+    });
+
+    function resetForm() {
+      document.getElementById('contactForm').reset();
+      document.getElementById('formWrapper').style.display = 'block';
+      document.getElementById('successMsg').style.display = 'none';
+      document.querySelector('.btn-submit').textContent = 'Send Message →';
+      document.querySelector('.btn-submit').disabled = false;
+      // Reset chips
+      document.querySelectorAll('.subject-chip').forEach((c,i) => c.classList.toggle('active', i === 0));
+    }
+  </script>
+</body>
+</html>

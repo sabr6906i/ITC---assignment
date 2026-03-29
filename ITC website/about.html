@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — ITC, IIT Bombay</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Mission Cards: 3 Distinct Styles */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    /* Card 1: Minimalist Border */
+    .mission-card:nth-child(1) {
+      text-align: left;
+      padding: 32px;
+      background: transparent;
+      border: 1px solid var(--outline-variant);
+      border-radius: 0;
+      transition: all 0.3s ease;
+    }
+    .mission-card:nth-child(1):hover {
+      border-color: var(--text-primary);
+      background: rgba(71, 71, 71, 0.1);
+    }
+
+    /* Card 2: Shadow Depth */
+    .mission-card:nth-child(2) {
+      text-align: center;
+      padding: 40px 28px;
+      background: var(--bg-card);
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .mission-card:nth-child(2):hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Card 3: Accent Left Bar */
+    .mission-card:nth-child(3) {
+      text-align: right;
+      padding: 32px 32px 32px 24px;
+      background: var(--bg-card);
+      border-right: 4px solid var(--accent-secondary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .mission-card:nth-child(3):hover {
+      border-right-width: 8px;
+      padding-right: 28px;
+    }
+
+    .mission-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .mission-card h3 {
+      margin-bottom: 10px;
+      font-family: 'Newsreader', serif;
+      font-weight: 700;
+    }
+
+    .mission-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Timeline: Modern Vertical with Icons */
+    .timeline {
+      margin-top: 48px;
+      position: relative;
+      padding-left: 48px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--outline-variant);
+    }
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -29px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-grad);
+      border: 2px solid var(--bg);
+    }
+
+    .tl-item h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .tl-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Two-col info section ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ── Clubs showcase ── */
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .club-card {
+      padding: 20px;
+      text-align: center;
+      border-radius: var(--radius);
+    }
+
+    .club-card:hover {
+      border-color: rgba(59, 130, 246, 0.35);
+    }
+
+    .club-emoji {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .club-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .club-card p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Join steps ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .step-card h4 {
+      font-family: 'Syne', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 900px) {
+      .mission-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .clubs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .clubs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">ITC</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="events.html">Events</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label animate">About ITC</span>
+      <h1 class="animate">The <span class="grad-text">'T'</span> of<br>IIT Bombay</h1>
+      <p class="section-subtitle animate" style="margin: 16px auto 0;">Institute Technical Council — the apex body for
+        all technical activities at IIT Bombay, nurturing innovators since day one.</p>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- MISSION -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label animate">Our Mission</span>
+      <h2 class="animate">Why ITC Exists</h2>
+      <p class="section-subtitle animate">Student tech is one of the pillars of IIT Bombay. We make sure your ideas are
+        heard — and we help turn them into reality, every step of the way.</p>
+      <div class="mission-grid">
+        <div class="card mission-card animate">
+          <div class="mission-icon">💡</div>
+          <h3>Nurture Innovation</h3>
+          <p>Motivate young minds to pursue innovative ideas, no matter how ambitious. We provide the environment,
+            tools, and community to help ideas flourish.</p>
+        </div>
+        <div class="card mission-card animate">
+          <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="Connect Students" class="club-logo-small" />
+          <h3>Connect Students</h3>
+          <p>Bridge the gap between students and technical clubs, labs, and resources. ITC ensures no one with passion
+            is left without a platform.</p>
+        </div>
+        <div class="card mission-card animate">
+          <div class="mission-icon">🏗️</div>
+          <h3>Build the Culture</h3>
+          <p>Organize events, talks, competitions, and activities that keep the spirit of technology alive and thriving
+            across the institute year-round.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STRUCTURE + HISTORY -->
+  <section class="section">
+    <div class="container">
+      <div class="info-grid">
+        <!-- Structure -->
+        <div>
+          <span class="section-label animate">Organisation</span>
+          <h2 class="animate">How ITC Is Structured</h2>
+          <p class="animate" style="margin-top:12px;">ITC operates under the Students' Gymkhana of IIT Bombay. It is
+            headed by the General Secretary (Technical) and comprises conveners and managers across multiple clubs, tech
+            teams, and bodies.</p>
+          <div class="timeline">
+            <div class="tl-item animate">
+              <div class="tl-dot"></div>
+              <h4>General Secretary (Technical)</h4>
+              <p>Elected annually, leads the council, represents student tech interests to the institute administration.
+              </p>
+            </div>
+            <div class="tl-item animate">
+              <div class="tl-dot"></div>
+              <h4>Club Conveners & Managers</h4>
+              <p>Each club has a convener and managers who organize events, drive recruitment, and mentor members
+                throughout the year.</p>
+            </div>
+            <div class="tl-item animate">
+              <div class="tl-dot"></div>
+              <h4>Web, Creatives & PG Teams</h4>
+              <p>Cross-functional teams handle the council's digital presence, design assets, and postgraduate technical
+                activities.</p>
+            </div>
+            <div class="tl-item animate">
+              <div class="tl-dot"></div>
+              <h4>Other Bodies</h4>
+              <p>DevCom, Anymation, CDS-SRG, and CSEC operate under ITC, broadening the technical landscape beyond
+                traditional clubs.</p>
+            </div>
+          </div>
+        </div>
+        <!-- How to join -->
+        <div>
+          <span class="section-label animate">Membership</span>
+          <h2 class="animate">How to Join</h2>
+          <p class="animate" style="margin-top:12px;">There is no formal way to join a club at ITC. The philosophy is
+            open participation — just show up and get involved.</p>
+          <div class="steps-grid" style="grid-template-columns:1fr; margin-top:28px;">
+            <div class="step-card animate">
+              <div class="step-num">01</div>
+              <h4>Watch Your Webmail</h4>
+              <p>All club events, activities, and open sessions are announced via IIT Bombay webmail. Keep an eye out
+                for invitations.</p>
+            </div>
+            <div class="step-card animate">
+              <div class="step-num">02</div>
+              <h4>Attend & Participate</h4>
+              <p>Walk into any club session or event that interests you. No signup, no gatekeeping — participation is
+                all that matters.</p>
+            </div>
+            <div class="step-card animate">
+              <div class="step-num">03</div>
+              <h4>Apply for the Council</h4>
+              <p>Annual recruitments are held for formal positions like conveners, managers, and tech team members.
+                Details shared on webmail.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CLUBS SHOWCASE -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label animate">Clubs & Bodies</span>
+      <h2 class="animate">What's Under ITC</h2>
+      <p class="section-subtitle animate">Eight technical clubs, two labs, multiple tech teams, and associated bodies —
+        a complete ecosystem for technical exploration.</p>
+      <div class="clubs-grid">
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/aero.jpeg" alt="Aeromodelling Club Logo" class="club-logo" />
+          <h4>Aeromodelling Club</h4>
+          <p>Build, fly, compete</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/biox_f0BdRbQ.png" alt="BioX Club Logo" class="club-logo" />
+          <h4>BioX Club</h4>
+          <p>Life sciences & biotech</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/cheme.png" alt="Chemistry Club Logo" class="club-logo" />
+          <h4>Chemistry Club</h4>
+          <p>Applied chemistry projects</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/erc.jpeg" alt="Electronics & Robotics Club Logo" class="club-logo" />
+          <h4>Electronics & Robotics</h4>
+          <p>Circuits, bots & more</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/energy.jpeg" alt="Energy Club Logo" class="club-logo" />
+          <h4>Energy Club</h4>
+          <p>Sustainable energy solutions</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/mnp.png" alt="Maths & Physics Club Logo" class="club-logo" />
+          <h4>Maths & Physics Club</h4>
+          <p>Theory meets application</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="Web & Coding Club Logo" class="club-logo" />
+          <h4>Web & Coding Club</h4>
+          <p>Software, web, and beyond</p>
+        </div>
+        <div class="card club-card animate">
+          <img src="../IITB Tech Council Home_files/quant.jpeg" alt="Krittika Club Logo" class="club-logo" />
+          <h4>Krittika</h4>
+          <p>Astronomy enthusiasts</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">ITC</div>
+          <p>Institute Technical Council, IIT Bombay. Fostering innovation, tinkering, and creativity since the
+            inception of the Gymkhana.</p>
+          <div class="social-links" style="margin-top:20px;">
+            <a href="https://www.facebook.com/tech.iitb" target="_blank">f</a>
+            <a href="https://www.instagram.com/tech.iitb" target="_blank">ig</a>
+            <a href="https://twitter.com/tech_iitb" target="_blank">tw</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="team.html">Meet the Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="https://itc.gymkhana.iitb.ac.in/clubs" target="_blank">All Clubs</a></li>
+            <li><a href="https://itc.gymkhana.iitb.ac.in/techteams" target="_blank">Tech Teams</a></li>
+            <li><a href="https://sites.google.com/view/tinkererslaboratory/home" target="_blank">Tinkerer's Lab</a></li>
+            <li><a href="mailto:gsectech@iitb.ac.in">Email ITC</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Institute Technical Council, IIT Bombay</span>
+        <span>Student Activity Centre, Mumbai 400076</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
