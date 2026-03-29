@@ -1,4 +1,4 @@
 {
-  "buildCommand": "cp -r 'IITB Tech Council Home_files' 'ITC website/' && cp -r 'Achievements _ IITB Tech Council_files' 'ITC website/' && cp -r 'COMMUNITIES _ IITB Tech Council_files' 'ITC website/' && cp -r 'IITB Tech Clubs _ Innovative Student Organizations _ IITB Tech Council_files' 'ITC website/' && cp -r 'IITB Tech Teams _ Cutting-Edge Technical Innovation _ IITB Tech Council_files' 'ITC website/' && cp -r 'Portals _ IITB Tech Council_files' 'ITC website/' && cp -r 'Contact Us_files' 'ITC website/'",
+  "buildCommand": "for d in *_files; do cp -r \"$d\" \"ITC website/\"; done",
   "outputDirectory": "ITC website"
 }
