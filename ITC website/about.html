@@ -17,12 +17,15 @@
 
     /* Card 1: Minimalist Border */
     .mission-card:nth-child(1) {
-      text-align: left;
+      text-align: center;
       padding: 32px;
       background: transparent;
       border: 1px solid var(--outline-variant);
       border-radius: 0;
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .mission-card:nth-child(1):hover {
       border-color: var(--text-primary);
@@ -38,6 +41,9 @@
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .mission-card:nth-child(2):hover {
       transform: translateY(-4px);
@@ -46,12 +52,15 @@
 
     /* Card 3: Accent Left Bar */
     .mission-card:nth-child(3) {
-      text-align: right;
+      text-align: center;
       padding: 32px 32px 32px 24px;
       background: var(--bg-card);
       border-right: 4px solid var(--accent-secondary);
       border-radius: 2px;
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .mission-card:nth-child(3):hover {
       border-right-width: 8px;
@@ -266,7 +275,7 @@
         heard — and we help turn them into reality, every step of the way.</p>
       <div class="mission-grid">
         <div class="card mission-card animate">
-          <div class="mission-icon">💡</div>
+          <img class="icon-img" src="icons/idea.svg" alt="Innovation">
           <h3>Nurture Innovation</h3>
           <p>Motivate young minds to pursue innovative ideas, no matter how ambitious. We provide the environment,
             tools, and community to help ideas flourish.</p>
@@ -278,7 +287,7 @@
             is left without a platform.</p>
         </div>
         <div class="card mission-card animate">
-          <div class="mission-icon">🏗️</div>
+          <img class="icon-img" src="icons/build.svg" alt="Build Culture">
           <h3>Build the Culture</h3>
           <p>Organize events, talks, competitions, and activities that keep the spirit of technology alive and thriving
             across the institute year-round.</p>
