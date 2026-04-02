@@ -53,7 +53,7 @@
       border: 1px solid var(--outline-variant);
       font-size: 0.75rem;
       color: var(--text-secondary);
-      font-family: 'Newsreader', serif;
+      font-family: var(--font-heading);
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -142,7 +142,7 @@
     }
     
     .stat-num {
-      font-family: 'Newsreader', serif;
+      font-family: var(--font-heading);
       font-size: 2.4rem;
       font-weight: 800;
       color: var(--text-primary);
@@ -177,7 +177,7 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 32px;
-      font-family: 'Newsreader', serif;
+      font-family: var(--font-heading);
       font-weight: 600;
     }
     
@@ -230,7 +230,7 @@
       display: grid; place-items: center; font-size: 1.2rem;
       background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
     }
-    .feature-item h4 { font-family: 'Syne', sans-serif; font-size: 1rem; margin-bottom: 4px; }
+    .feature-item h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 4px; }
     .feature-item p  { font-size: 0.9rem; line-height: 1.6; }
     /* right col — stacked cards */
     .snap-cards { position: relative; }
@@ -243,14 +243,14 @@
       background: var(--bg-card); border: 1px solid rgba(59,130,246,0.15); z-index: 1;
     }
     .snap-quote {
-      font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700;
+      font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;
       line-height: 1.5; color: var(--text-primary); margin-bottom: 20px;
     }
     .snap-author { display: flex; gap: 12px; align-items: center; }
     .snap-avatar {
       width: 40px; height: 40px; border-radius: 50%;
       background: var(--accent-primary); display: grid; place-items: center;
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: #000000;
+      font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: #000000;
     }
     .snap-author-info small { color: var(--text-muted); font-size: 0.8rem; display: block; }
 
@@ -262,7 +262,7 @@
     .event-tag { padding: 20px 24px 0; }
     .event-body { padding: 20px 24px 24px; }
     .event-date { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
-    .event-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .event-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
     .event-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
     .event-img {
       width: 100%; height: 160px; object-fit: cover;
@@ -410,21 +410,21 @@
           <p class="animate" style="margin-top:16px;">ITC is the apex body governing all technical activities at IIT Bombay. We connect students to resources, mentors, and platforms to build the next generation of innovators.</p>
           <div class="feature-list">
             <div class="feature-item animate">
-              <img src="../IITB Tech Council Home_files/aero.jpeg" alt="Support Ideas" class="club-logo-small" />
+              <img src="IITB Tech Council Home_files/aero.jpeg" alt="Support Ideas" class="club-logo-small" />
               <div>
                 <h4>Support Ideas</h4>
                 <p>From concept to prototype — ITC backs student ideas with funding, labs, and mentorship.</p>
               </div>
             </div>
             <div class="feature-item animate">
-              <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="Connect Communities" class="club-logo-small" />
+              <img src="IITB Tech Council Home_files/wncc.jpeg" alt="Connect Communities" class="club-logo-small" />
               <div>
                 <h4>Connect Communities</h4>
                 <p>Bridging 8+ technical clubs with a unified platform and shared resources.</p>
               </div>
             </div>
             <div class="feature-item animate">
-              <img src="../IITB Tech Council Home_files/energy.jpeg" alt="Run Events" class="club-logo-small" />
+              <img src="IITB Tech Council Home_files/energy.jpeg" alt="Run Events" class="club-logo-small" />
               <div>
                 <h4>Run Events</h4>
                 <p>Hackathons, workshops, talks and competitions that keep the tech culture alive.</p>
@@ -462,7 +462,7 @@
       </div>
       <div class="events-grid">
         <div class="card event-card animate">
-          <img src="../IITB Tech Council Home_files/ITClogoWhite.png" alt="Techfest" class="club-logo" />
+          <img src="IITB Tech Council Home_files/ITClogoWhite.png" alt="Techfest" class="club-logo" />
           <div class="event-body">
             <p class="event-date">Annual · IIT Bombay Campus</p>
             <h3 class="event-title">Techfest</h3>
@@ -470,7 +470,7 @@
           </div>
         </div>
         <div class="card event-card animate">
-          <img src="../IITB Tech Council Home_files/wncc.jpeg" alt="Club Recruitment Drives" class="club-logo" />
+          <img src="IITB Tech Council Home_files/wncc.jpeg" alt="Club Recruitment Drives" class="club-logo" />
           <div class="event-body">
             <p class="event-date">Semester · All Clubs</p>
             <h3 class="event-title">Club Recruitment Drives</h3>
@@ -478,7 +478,7 @@
           </div>
         </div>
         <div class="card event-card animate">
-          <img src="../IITB Tech Council Home_files/tl.jpg" alt="TL Open Days" class="club-logo" />
+          <img src="IITB Tech Council Home_files/tl.jpg" alt="TL Open Days" class="club-logo" />
           <div class="event-body">
             <p class="event-date">Year-round · Tinkerer's Lab</p>
             <h3 class="event-title">TL Open Days</h3>
