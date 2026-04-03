@@ -6,14 +6,14 @@
   <title>Events — ITC, IIT Bombay</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Filter Tabs: Varied Styles */
+    /* Filter tabs */
     .filter-tabs {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       margin-bottom: 40px;
     }
-    
+
     .filter-tab {
       padding: 10px 20px;
       border-radius: 0;
@@ -28,7 +28,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-    
+
     .filter-tab:hover,
     .filter-tab.active {
       background: var(--bg-card);
@@ -36,13 +36,13 @@
       color: var(--text-primary);
     }
 
-    /* Event Cards: 3 Distinct Styles */
+    /* Event cards */
     .events-main {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 28px;
     }
-    
+
     .event-full-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -52,8 +52,7 @@
       display: flex;
       flex-direction: column;
     }
-    
-    /* Style 1: Sharp Border + Simple */
+
     .event-full-card:nth-child(1) {
       border: 2px solid var(--outline-variant);
     }
@@ -62,8 +61,7 @@
       transform: translate(-2px, -2px);
       box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
     }
-    
-    /* Style 2: Shadow Lift */
+
     .event-full-card:nth-child(2) {
       border: 1px solid var(--border);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -72,8 +70,7 @@
       transform: translateY(-6px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     }
-    
-    /* Style 3: Accent Bar */
+
     .event-full-card:nth-child(3) {
       border-top: 4px solid var(--accent-secondary);
       border-right: 1px solid var(--border);
@@ -83,7 +80,7 @@
     .event-full-card:nth-child(3):hover {
       border-top-width: 8px;
     }
-    
+
     .event-banner {
       height: 140px;
       display: flex;
@@ -93,13 +90,13 @@
       position: relative;
       background: rgba(71, 71, 71, 0.1);
     }
-    
+
     .event-banner .event-status {
       position: absolute;
       top: 12px;
       right: 12px;
     }
-    
+
     .status-upcoming {
       background: transparent;
       color: var(--accent-secondary);
@@ -111,32 +108,32 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-    
+
     .status-past {
       background: transparent;
       color: var(--text-muted);
       border: 1px solid var(--border);
     }
-    
+
     .status-annual {
       background: transparent;
       color: var(--text-secondary);
       border: 1px solid var(--text-secondary);
     }
-    
+
     .event-info {
       padding: 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-    
+
     .event-meta {
       display: flex;
       gap: 16px;
       margin-bottom: 12px;
     }
-    
+
     .event-meta span {
       font-size: 0.78rem;
       color: var(--text-muted);
@@ -144,21 +141,21 @@
       align-items: center;
       gap: 4px;
     }
-    
+
     .event-info h3 {
       font-family: var(--font-heading);
       font-size: 1.2rem;
       margin-bottom: 10px;
       font-weight: 700;
     }
-    
+
     .event-info p {
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.65;
       flex: 1;
     }
-    
+
     .event-tags {
       display: flex;
       gap: 8px;
@@ -166,35 +163,35 @@
       flex-wrap: wrap;
     }
 
-    /* Featured Event */
+    /* Featured event */
     .event-featured {
       grid-column: 1 / -1;
       display: grid;
       grid-template-columns: 1fr 1.2fr;
     }
-    
+
     .event-featured .event-banner {
       height: auto;
       min-height: 200px;
       font-size: 5rem;
     }
-    
+
     .event-featured .event-info {
       padding: 32px;
     }
-    
+
     .event-featured h3 {
       font-size: 1.6rem;
     }
 
-    /* Section Divider */
+    /* Section divider */
     .section-divider-label {
       display: flex;
       align-items: center;
       gap: 16px;
       margin: 60px 0 32px;
     }
-    
+
     .section-divider-label h3 {
       font-family: var(--font-heading);
       font-size: 1rem;
@@ -203,7 +200,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-    
+
     .section-divider-label::after {
       content: '';
       flex: 1;
@@ -238,7 +235,7 @@
     <a href="events.html">Events</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
   </div>
 
-  <!-- PAGE HERO -->
+  <!-- Page hero -->
   <section class="page-hero">
     <div class="container">
       <span class="section-label animate">Events</span>
@@ -248,11 +245,10 @@
   </section>
   <div class="divider"></div>
 
-  <!-- EVENTS LIST -->
+  <!-- Events list -->
   <section class="section">
     <div class="container">
 
-      <!-- Filter tabs -->
       <div class="filter-tabs">
         <button class="filter-tab active" onclick="filterEvents('all', this)">All Events</button>
         <button class="filter-tab" onclick="filterEvents('upcoming', this)">Upcoming</button>
@@ -260,10 +256,9 @@
         <button class="filter-tab" onclick="filterEvents('annual', this)">Annual</button>
       </div>
 
-      <!-- Events grid -->
       <div class="events-main" id="eventsGrid">
 
-        <!-- Featured: Techfest -->
+        <!-- Techfest (featured) -->
         <div class="event-full-card event-featured animate" data-type="annual">
           <div class="event-banner">
             <img src="IITB Tech Council Home_files/ITClogoWhite.png" alt="Techfest" class="club-logo" />
@@ -306,10 +301,10 @@
           </div>
         </div>
 
-        <!-- Tinkerer's Lab Open Days -->
+        <!-- Tinkerer's Lab -->
         <div class="event-full-card animate" data-type="upcoming">
           <div class="event-banner">
-            <img src="IITB Tech Council Home_files/tl.jpg" alt="Tinkerer\'s Lab" class="club-logo" />
+            <img src="IITB Tech Council Home_files/tl.jpg" alt="Tinkerer's Lab" class="club-logo" />
             <span class="badge status-upcoming event-status">Upcoming</span>
           </div>
           <div class="event-info">
@@ -351,7 +346,7 @@
         <!-- WnCC Learner's Space -->
         <div class="event-full-card animate" data-type="past">
           <div class="event-banner">
-            <img src="IITB Tech Council Home_files/wncc.jpeg" alt="WnCC Learner\'s Space" class="club-logo" />
+            <img src="IITB Tech Council Home_files/wncc.jpeg" alt="WnCC Learner's Space" class="club-logo" />
             <span class="badge status-past event-status">Past</span>
           </div>
           <div class="event-info">
@@ -390,11 +385,11 @@
           </div>
         </div>
 
-      </div><!-- /events-main -->
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -437,7 +432,6 @@
   <script>
     // Filter events by type
     function filterEvents(type, btn) {
-      // Update active tab
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
 
@@ -445,7 +439,6 @@
       cards.forEach(card => {
         if (type === 'all' || card.dataset.type === type) {
           card.style.display = '';
-          // Reset grid span for featured if shown
         } else {
           card.style.display = 'none';
         }

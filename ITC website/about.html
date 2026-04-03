@@ -7,7 +7,7 @@
   <title>About — ITC, IIT Bombay</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Mission Cards: 3 Distinct Styles */
+    /* Mission cards */
     .mission-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -15,7 +15,6 @@
       margin-top: 60px;
     }
 
-    /* Card 1: Minimalist Border */
     .mission-card:nth-child(1) {
       text-align: center;
       padding: 32px;
@@ -32,7 +31,6 @@
       background: rgba(71, 71, 71, 0.1);
     }
 
-    /* Card 2: Shadow Depth */
     .mission-card:nth-child(2) {
       text-align: center;
       padding: 40px 28px;
@@ -50,7 +48,6 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
-    /* Card 3: Accent Left Bar */
     .mission-card:nth-child(3) {
       text-align: center;
       padding: 32px 32px 32px 24px;
@@ -85,7 +82,7 @@
       line-height: 1.6;
     }
 
-    /* Timeline: Modern Vertical with Icons */
+    /* Timeline */
     .timeline {
       margin-top: 48px;
       position: relative;
@@ -100,7 +97,6 @@
       bottom: 8px;
       width: 2px;
       background: var(--outline-variant);
-    }
     }
 
     .tl-item {
@@ -131,7 +127,7 @@
       line-height: 1.6;
     }
 
-    /* ── Two-col info section ── */
+    /* Two-col info */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -139,7 +135,7 @@
       align-items: start;
     }
 
-    /* ── Clubs showcase ── */
+    /* Clubs showcase */
     .clubs-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -175,7 +171,7 @@
       color: var(--text-muted);
     }
 
-    /* ── Join steps ── */
+    /* Join steps */
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -209,28 +205,14 @@
     }
 
     @media (max-width: 900px) {
-      .mission-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .clubs-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
+      .mission-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; gap: 48px; }
+      .clubs-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
-      .clubs-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .clubs-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -255,7 +237,7 @@
     <a href="events.html">Events</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
   </div>
 
-  <!-- PAGE HERO -->
+  <!-- Page hero -->
   <section class="page-hero">
     <div class="container">
       <span class="section-label animate">About ITC</span>
@@ -266,7 +248,7 @@
   </section>
   <div class="divider"></div>
 
-  <!-- MISSION -->
+  <!-- Mission -->
   <section class="section">
     <div class="container">
       <span class="section-label animate">Our Mission</span>
@@ -298,11 +280,10 @@
 
   <div class="divider"></div>
 
-  <!-- STRUCTURE + HISTORY -->
+  <!-- Structure + How to join -->
   <section class="section">
     <div class="container">
       <div class="info-grid">
-        <!-- Structure -->
         <div>
           <span class="section-label animate">Organisation</span>
           <h2 class="animate">How ITC Is Structured</h2>
@@ -313,8 +294,7 @@
             <div class="tl-item animate">
               <div class="tl-dot"></div>
               <h4>General Secretary (Technical)</h4>
-              <p>Elected annually, leads the council, represents student tech interests to the institute administration.
-              </p>
+              <p>Elected annually, leads the council, represents student tech interests to the institute administration.</p>
             </div>
             <div class="tl-item animate">
               <div class="tl-dot"></div>
@@ -336,7 +316,6 @@
             </div>
           </div>
         </div>
-        <!-- How to join -->
         <div>
           <span class="section-label animate">Membership</span>
           <h2 class="animate">How to Join</h2>
@@ -369,7 +348,7 @@
 
   <div class="divider"></div>
 
-  <!-- CLUBS SHOWCASE -->
+  <!-- Clubs showcase -->
   <section class="section">
     <div class="container">
       <span class="section-label animate">Clubs & Bodies</span>
@@ -421,7 +400,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-grid">

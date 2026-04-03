@@ -1,9 +1,4 @@
-/* ============================================================
-   ITC WEBSITE — SHARED JS
-   Handles: navbar scroll effect, mobile menu, scroll animations
-   ============================================================ */
-
-// ── Navbar scroll effect ──────────────────────────────────────
+// Navbar scroll effect
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
   if (!navbar) return;
@@ -14,14 +9,13 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ── Mobile menu toggle ────────────────────────────────────────
+// Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
 const mobileMenu = document.querySelector('.mobile-menu');
 
 if (hamburger && mobileMenu) {
   hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
-    // Animate hamburger to X
     const spans = hamburger.querySelectorAll('span');
     if (mobileMenu.classList.contains('open')) {
       spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -36,7 +30,6 @@ if (hamburger && mobileMenu) {
     }
   });
 
-  // Close mobile menu on link click
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -48,11 +41,10 @@ if (hamburger && mobileMenu) {
   });
 }
 
-// ── Scroll-triggered animations ───────────────────────────────
+// Scroll-triggered animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      // Staggered delay for sibling elements
       const siblings = entry.target.parentElement.querySelectorAll('.animate');
       let delay = 0;
       siblings.forEach((el, idx) => {
@@ -68,7 +60,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.animate').forEach(el => observer.observe(el));
 
-// ── Active nav link ───────────────────────────────────────────
+// Active nav link
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
   const href = link.getAttribute('href');
@@ -77,7 +69,7 @@ document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
   }
 });
 
-// ── Smooth reveal for page load ───────────────────────────────
+// Smooth page load reveal
 document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = '0';
   requestAnimationFrame(() => {

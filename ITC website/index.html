@@ -7,7 +7,7 @@
   <meta name="description" content="Institute Technical Council, IIT Bombay — Innovate. Tinker. Create." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Hero: Bold Asymmetric Layout */
+    /* Hero section */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -17,13 +17,12 @@
       padding: calc(var(--nav-h) + 60px) 0 80px;
       background: linear-gradient(135deg, rgba(30, 30, 30, 0.5) 0%, transparent 100%);
     }
-    
-    /* Minimalist background pattern (no gradients) */
+
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: 
+      background-image:
         repeating-linear-gradient(
           90deg,
           transparent,
@@ -33,7 +32,7 @@
         );
       pointer-events: none;
     }
-    
+
     .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -42,7 +41,7 @@
       position: relative;
       z-index: 1;
     }
-    
+
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -59,13 +58,13 @@
       text-transform: uppercase;
       margin-bottom: 24px;
     }
-    
+
     .hero-eyebrow::before {
       content: '■';
       font-size: 0.5rem;
       color: var(--text-secondary);
     }
-    
+
     .hero h1 {
       font-size: clamp(2.5rem, 6vw, 5rem);
       font-weight: 900;
@@ -74,7 +73,7 @@
       margin-bottom: 24px;
       color: var(--text-primary);
     }
-    
+
     .hero p {
       font-size: 1.1rem;
       line-height: 1.75;
@@ -82,25 +81,25 @@
       max-width: 480px;
       color: var(--text-secondary);
     }
-    
+
     .hero-cta {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
     }
-    /* hero visual */
+
     .hero-visual {
       position: relative; display: grid;
       grid-template-columns: 1fr 1fr; gap: 16px;
       animation: fadeIn 0.8s 0.3s both;
     }
-    /* Stat Cards: 3 Distinct Styles (Variety Principle) */
+
+    /* Stat cards */
     .stat-card {
       padding: 28px;
       transition: all 0.3s ease;
     }
-    
-    /* Style 1: Brutalist Border */
+
     .stat-card:nth-child(1) {
       background: transparent;
       border: 2px solid var(--outline-variant);
@@ -111,8 +110,7 @@
       transform: translate(-2px, -2px);
       box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
     }
-    
-    /* Style 2: Shadow Depth with Lift */
+
     .stat-card:nth-child(2) {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -124,8 +122,7 @@
       transform: translateY(-6px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     }
-    
-    /* Style 3: Accent Left Bar */
+
     .stat-card:nth-child(3) {
       background: var(--bg-card);
       border-left: 4px solid var(--accent-secondary);
@@ -140,7 +137,7 @@
       border-left-width: 8px;
       padding-left: 20px;
     }
-    
+
     .stat-num {
       font-family: var(--font-heading);
       font-size: 2.4rem;
@@ -150,7 +147,7 @@
     }
     .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
 
-    /* Clubs Strip: Varied Chip Styles */
+    /* Clubs strip */
     .clubs-strip {
       padding: 64px 0;
       overflow: hidden;
@@ -169,7 +166,7 @@
     }
     .clubs-strip::before { left: 0; background: linear-gradient(90deg, rgba(19, 19, 19, 1), transparent); }
     .clubs-strip::after  { right: 0; background: linear-gradient(-90deg, rgba(19, 19, 19, 1), transparent); }
-    
+
     .strip-label {
       text-align: center;
       color: var(--text-muted);
@@ -180,19 +177,19 @@
       font-family: var(--font-heading);
       font-weight: 600;
     }
-    
+
     .clubs-track {
       display: flex;
       gap: 16px;
       animation: scroll-left 45s linear infinite;
       width: max-content;
     }
-    
+
     @keyframes scroll-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    
+
     .club-chip {
       display: flex;
       align-items: center;
@@ -206,12 +203,12 @@
       font-weight: 500;
       transition: all 0.2s ease;
     }
-    
+
     .club-chip:hover {
       border-color: var(--outline-variant);
       background: rgba(71, 71, 71, 0.2);
     }
-    
+
     .club-dot {
       width: 8px;
       height: 8px;
@@ -220,7 +217,7 @@
       flex-shrink: 0;
     }
 
-    /* ── About snapshot ── */
+    /* About snapshot */
     .about-snap { padding: 100px 0; }
     .about-snap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .feature-list { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
@@ -232,7 +229,8 @@
     }
     .feature-item h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 4px; }
     .feature-item p  { font-size: 0.9rem; line-height: 1.6; }
-    /* right col — stacked cards */
+
+    /* Stacked cards */
     .snap-cards { position: relative; }
     .snap-card-main {
       background: var(--bg-card); border: 1px solid var(--border);
@@ -254,7 +252,7 @@
     }
     .snap-author-info small { color: var(--text-muted); font-size: 0.8rem; display: block; }
 
-    /* ── Events teaser ── */
+    /* Events teaser */
     .events-teaser { padding: 0 0 100px; }
     .events-teaser .section-header { margin-bottom: 48px; display: flex; justify-content: space-between; align-items: flex-end; }
     .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -271,7 +269,7 @@
       font-size: 3rem;
     }
 
-    /* ── CTA banner ── */
+    /* CTA banner */
     .cta-banner { padding: 0 0 100px; }
     .cta-inner {
       background: var(--bg-card);
@@ -302,7 +300,7 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">ITC</a>
@@ -319,7 +317,6 @@
     </div>
   </nav>
 
-  <!-- Mobile menu -->
   <div class="mobile-menu">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -328,7 +325,7 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- HERO -->
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-blob blob-blue"></div>
     <div class="hero-blob blob-violet"></div>
@@ -369,12 +366,11 @@
     </div>
   </section>
 
-  <!-- CLUBS STRIP -->
+  <!-- Clubs strip -->
   <div class="divider"></div>
   <div class="clubs-strip">
     <p class="strip-label">Clubs & Bodies under ITC</p>
     <div class="clubs-track">
-      <!-- duplicated for seamless loop -->
       <div class="club-chip"><span class="club-dot"></span>Aeromodelling Club</div>
       <div class="club-chip"><span class="club-dot"></span>BioX Club</div>
       <div class="club-chip"><span class="club-dot"></span>Chemistry Club</div>
@@ -385,7 +381,7 @@
       <div class="club-chip"><span class="club-dot"></span>Krittika Astronomy</div>
       <div class="club-chip"><span class="club-dot"></span>DevCom</div>
       <div class="club-chip"><span class="club-dot"></span>Tinkerer's Lab</div>
-      <!-- repeat -->
+      <!-- duplicated for seamless scroll loop -->
       <div class="club-chip"><span class="club-dot"></span>Aeromodelling Club</div>
       <div class="club-chip"><span class="club-dot"></span>BioX Club</div>
       <div class="club-chip"><span class="club-dot"></span>Chemistry Club</div>
@@ -400,7 +396,7 @@
   </div>
   <div class="divider"></div>
 
-  <!-- ABOUT SNAPSHOT -->
+  <!-- About snapshot -->
   <section class="about-snap">
     <div class="container">
       <div class="about-snap-grid">
@@ -450,7 +446,7 @@
     </div>
   </section>
 
-  <!-- EVENTS TEASER -->
+  <!-- Events teaser -->
   <section class="events-teaser">
     <div class="container">
       <div class="section-header">
@@ -489,7 +485,7 @@
     </div>
   </section>
 
-  <!-- CTA BANNER -->
+  <!-- CTA -->
   <section class="cta-banner">
     <div class="container">
       <div class="cta-inner">
@@ -504,7 +500,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-grid">
